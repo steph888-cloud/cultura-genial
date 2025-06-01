@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAWA</title>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            text-align: center;
+            background-color: #f5b7b1;
+            margin: 0;
+            padding: 0;
+        }
+		p {
+            color: black;
+            font-size: 24px;
+            margin: 20px 0;
+			font-family: Times New Roman;
+        }
+        h1 {
+            color: #c0392b;
+            font-size: 50px;
+            margin: 20px 0;
+        }
+		h2 {
+            color: black;
+            font-size: 30px;
+            margin: 20px 0;
+			font-family: Times New Roman;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .card-title {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .card a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+		.navbar {
+            background-color: #a34236; /* Color de fondo */
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+		.main-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .main-image img {
+            width: 1000px;
+            max-width: 1000px;
+            height: auto;
+            display: block;
+        }
+		
+		/* Estilos generales del footer */
+footer {
+    background-color: #000; /* Fondo completamente negro */
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Contenido dentro del cuadro negro */
+.footer-content {
+    background-color: black;  /* Fondo blanco */
+    color: white;  /* Texto negro */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+
+}
+
+/* Logo y título */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 20px auto;
+    width: 90%;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+}
+
+/* Enlaces del footer */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+<div class="navbar">
+        <div class="logo">
+            <a href="humanidades.html">CULTURA GENIAL</a>
+        </div>
+        <div class="menu">
+            <a href="humanidades.html">Volver al inicio</a>
+            <a href="#">ARQUITECTURA</a>
+            <a href="#">PINTURA</a>
+            <a href="#">CINE</a>
+            
+        </div>
+    </div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    <h1>HUMANIDADES</h1>
+	
+	<br>
+	</div>
+	<div class="main-image">
+        <img src="https://blog.centraldereservas.com/wp-content/uploads/2022/01/Que-ver-en-Colombia.jpg" alt="Imagen Central">
+    </div>
+	<p> Bienvenid@ a nuestra pagina web!!. Aqui podras encontrar desde
+<br>	articulos de historia y
+	filosofia hasta reseñas criticas asociadas
+<br>	a la realidad de nuestro pais.
+	<br>
+	<br>
+	Disfruta de nuestro contenido y no te olvides 
+	<br>de dejar tu comentario y participar en nuestros foros!!
+	<br>
+
+	<br>
+	<br>
+ <h2>INVESTIGACION Y ARTICULOS</h2>
+ 
+    <div class="gallery">
+        <div class="card"><a href="articulo1.html"><img src="https://th.bing.com/th/id/OIF.m1KVtLN6prqYpxGdYjCC8g?w=256&h=192&c=7&r=0&o=5&pid=1.7" alt="Artículo 1"><div class="card-title">ENGLISH</div></a></div>
+        <div class="card"><a href="articulo2.html"><img src="https://cdn.deultimominuto.net/wp-content/uploads/2023/06/MUJERES-COLOMBIA.jpg" alt="Artículo 2"><div class="card-title">FILOSOFIA</div></a></div>
+        <div class="card"><a href="articulo3.html"><img src="https://th.bing.com/th/id/OIP.2c6d6thWyxHci2LJLuXvOQHaFD?w=230&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 3"><div class="card-title">CATEDRA DE PAZ</div></a></div>
+        <div class="card"><a href="articulo4.html"><img src="https://th.bing.com/th/id/R.b07b90ac6dc66a67c3d236298365ef68?rik=4rpjPqcuW%2bJTGg&pid=ImgRaw&r=0" alt="Artículo 4"><div class="card-title">PLAN LECTOR</div></a></div>
+        <div class="card"><a href="#articulo5"><img src="https://th.bing.com/th/id/OIP.3uyJ3FQwnSwM52R1U_ta8gHaEK?w=330&h=186&c=7&r=0&o=5&pid=1.7" alt="Artículo 5"><div class="card-title">LENGUAJE</div></a></div>
+        <div class="card"><a href="#articulo6"><img src="https://thebogotapost.com/wp-content/uploads/2019/08/independencia-copy.jpg" alt="Artículo 6"><div class="card-title">HISTORIA</div></a></div>
+        <div class="card"><a href="#articulo7"><img src="https://www.agenciapi.co/sites/default/files/2023-12/Economia-colombia-2.jpg" alt="Artículo 7"><div class="card-title">ECONOMIA</div></a></div>
+        <div class="card"><a href="#articulo8"><img src="https://ish2024.org/wp-content/uploads/2023/04/slider-2.jpg" alt="Artículo 8"><div class="card-title">GEOGRAFIA</div></a></div>
+        <div class="card"><a href="#articulo9"><img src="https://www.65ymas.com/uploads/s1/15/20/6/dieta-contra-el-estrenimiento.jpeg" alt="Artículo 9"><div class="card-title">ED. FISICA</div></a></div>
+        <div class="card"><a href="#articulo10"><img src="https://www.spainexchange.com/assets/img/guides/bogota_cathedral.jpg" alt="Artículo 10"><div class="card-title">RELIGION</div></a></div>
+    </div>
+	<br>
+		 <br>
+		 <br>
+		 <br>
+
+<footer>
+    <div class="footer-container">
+        
+        <hr>
+        <div class="footer-bottom">
+            <span>2024 - 2025 © SJB</span>
+            <div class="footer-links">
+                <a href="#">Últimas Novedades</a>
+                <a href="#">Populares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos de uso</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">¿Cómo citar?</a>
+                <a href="#">Anuncie</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

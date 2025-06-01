@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo 1</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        h1 {  color: black; font-family: Times New Roman, serif; font-size: 20px; }
+        p { max-width: 800px; margin-left: 50px; text-align: left; font-size: 20px; }
+        a { display: block; margin-top: 10px; color: black; font-family: Comic Sans; float: left; margin-left: 50px; text-decoration: none}
+		h2 { color: #B17F59; font-family: Times New Roman; font-size: 50px; text-align: left; margin-left: 50px;}
+		h3 { color: white; font-family: Times New Roman; font-size: 30px; text-align: left; margin-left: 50px;}
+		
+		.navbar {
+            background-color: #a34236; /* Color de fondo */
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+		.container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Contenido principal (artículo) */
+        .content {
+            width: 65%;  /* Ajusta el tamaño según necesites */
+        }
+
+        /* Sección de noticias recientes */
+        .recent-news {
+            width: 30%;  /* Ajusta el tamaño según necesites */
+            margin-left: 20px;
+            position: sticky;
+            top: 20px; /* Para que se mantenga visible mientras se hace scroll */
+        }
+
+        /* Título de "Más recientes" */
+        .recent-news h2 {
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        /* Línea negra debajo del título */
+        .underline {
+            height: 3px;
+            background-color: black;
+            width: 100%;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo de cada artículo */
+        .article {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .article img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .article-text {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .article-title:hover {
+            color: #a34236;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: gray;
+        }
+		
+		/* Estilos generales del footer */
+footer {
+    background-color: #000; /* Fondo completamente negro */
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Contenido dentro del cuadro negro */
+.footer-content {
+    background-color: black;  /* Fondo blanco */
+    color: white;  /* Texto negro */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+
+}
+
+/* Logo y título */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 20px auto;
+    width: 90%;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+}
+
+/* Enlaces del footer */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.comment-section {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+     
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .comment {
+            position: relative;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-options {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .comment-options span {
+            margin-left: 10px;
+        }
+
+        .comment-options span:hover {
+            color: red;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+ <div class="navbar">
+        <div class="logo">
+            <a href="humanidades.html">CULTURA GENIAL</a>
+        </div>
+        <div class="menu">
+            <a href="humanidades.html">Volver al inicio</a>
+            <a href="#">ARQUITECTURA</a>
+            <a href="#">PINTURA</a>
+            <a href="#">CINE</a>
+            
+        </div>
+    </div>
+  
+
+    
+ <br>
+    <br>
+	 <div class="container">
+        <!-- Contenido principal -->
+        <div class="content">
+<h2>¿Promesas Cumplidas o una Utopía Inalcanzable?</h2>
+   
+	<p>	
+	La firma del Acuerdo de Paz entre el gobierno colombiano y las FARC-EP en 2016 
+	fue anunciada como un hito histórico en la búsqueda de la justicia social y la reconciliación nacional. 
+	Sin embargo, a casi una década de su implementación, surgen serios cuestionamientos sobre la ética política 
+	detrás de su desarrollo, su efectividad en la transformación del país y la verdadera materialización de sus promesas.</p>
+	
+	
+
+<h2>Responsabilidad gubernamental</h2>
+<img src="https://th.bing.com/th/id/R.39b934d5ab36a5cf02a151de8363b318?rik=iv9vcwoAZ0pihQ&pid=ImgRaw&r=0" 
+         alt="Acuerdo de paz" 
+         style="width: 40%; margin-left: 180px; float: left;  width: 500px; height: auto; ">
+		  
+		  <br>
+		   <br>
+		    <br>
+			 <br>
+			  <br>
+			   <br>
+			    <br>
+				 <br>
+				  <br>
+				   <br>
+				    <br>
+					 <br>
+					  <br>
+					   <br>
+					    <br>
+						 <br>
+						  <br>
+		 <p>
+		 Desde una perspectiva filosófica, la ética política implica la responsabilidad de los gobernantes y 
+		 las instituciones en la promoción del bienestar común y el respeto por los derechos humanos. En este sentido,
+		 el Estado colombiano se comprometió a garantizar condiciones que permitieran la reinserción de los excombatientes,
+		 la reparación de las víctimas y la implementación de una reforma rural integral. No obstante, los informes de 
+		 organizaciones de derechos humanos y organismos internacionales han evidenciado un incumplimiento sistemático 
+		 de varios de estos compromisos, lo que pone en tela de juicio la legitimidad ética del proceso.
+		  <br>
+		   <br>
+         La pregunta central que surge es: <em><b>¿Puede considerarse ético un proceso de paz en el que las garantías estatales
+		 no se cumplen plenamente, perpetuando la desigualdad y la violencia en muchas regiones del país?</b></em></p>
+ 
+ <h2>Justicia social: más allá del discurso</h2>
+ 
+ 
+ <p>
+ La justicia social es uno de los pilares fundamentales del Acuerdo de Paz, ya que su propósito es reducir
+ las brechas históricas de desigualdad que han sido una de las principales causas del conflicto armado en 
+ Colombia. Sin embargo, los índices de pobreza en zonas rurales afectadas por la guerra siguen siendo alarmantes,
+ y los líderes sociales y excombatientes continúan siendo asesinados a un ritmo preocupante.
+<br>
+<br>
+Si la justicia social busca garantizar oportunidades equitativas para todos los ciudadanos, entonces cabe preguntarse: 
+<em><b>¿Cómo puede hablarse de una paz justa cuando la violencia y la exclusión siguen vigentes en las comunidades más afectadas por el 
+conflicto?</b></em></p>
+<br>
+<br>
+<img src="https://img.europapress.es/fotoweb/fotonoticia_20160927101621-945849_1024.jpg" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <h2>¿Reconciliación o memoria selectiva?</h2>	
+		 
+		 <p>Uno de los aspectos más controvertidos del proceso de paz ha sido 
+		 la construcción de memoria histórica y la reconciliación. Si bien la 
+		 Comisión de la Verdad ha trabajado en la recopilación de testimonios y en 
+		 la visibilización de las múltiples narrativas del conflicto, aún persisten 
+		 narrativas polarizadas que obstaculizan un verdadero proceso de sanación nacional.
+         <br>
+          <br>
+           Esto nos lleva a reflexionar: <em><b>¿Es posible una reconciliación real cuando el relato sobre el 
+		   conflicto sigue siendo usado como un arma política y no como un ejercicio honesto de verdad y justicia?</b></em></p>
+ 
+              <h2>¿Qué nos dice la ética sobre nuestro futuro?</h2>
+			  
+              <p>El análisis filosófico de los Acuerdos de Paz en Colombia nos enfrenta a dilemas 
+			  fundamentales sobre la justicia, la ética y la política. Si bien es innegable que la paz 
+			  negociada es un avance frente a la guerra, también es evidente que su implementación ha estado 
+			  marcada por falencias éticas y políticas que limitan su efectividad.
+<br>
+          <br>
+Finalmente, queda una pregunta abierta para la reflexión de cada ciudadano: <em><b>¿Hasta qué punto estamos dispuestos a exigir una
+ paz que no solo sea el cese de la guerra, sino una transformación ética y estructural de la sociedad colombiana?</b></em>
+<br>
+          <br>
+</p>
+   
+   <img src="https://th.bing.com/th/id/OIP.p17gV0xMol1wtwfjgKZhDwHaEK?rs=1&pid=ImgDetMain" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 
+				<br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 
+		 
+		 <p><em>
+"Nos prometieron una paz con dignidad, con oportunidades, con justicia. 
+Pero aquí seguimos, esperando que esas palabras se conviertan en realidades. 
+No podemos conformarnos con discursos vacíos ni con pactos que se quedan en el papel. 
+La paz verdadera exige que los compromisos se cumplan, que los campesinos tengan tierra,
+ que los excombatientes encuentren un camino digno, que los líderes sociales no mueran por 
+ defender sus comunidades. La pregunta no es si queremos la paz, porque eso está claro; la pregunta es:
+ ¿cuándo vamos a exigir que la paz sea un derecho tangible y no una promesa aplazada?" </em></p>
+<br>
+		 <br>
+		 <br>
+		 <br>
+  <div class="comment-section">
+        <h1>¿Opiniones sobre el tema? </h1>
+        <textarea id="commentInput" placeholder="Escribe tu comentario..."></textarea>
+        <button class="submit-btn" onclick="addComment()">Publicar</button>
+
+        <div id="commentContainer">
+            <!-- Aquí aparecerán los comentarios -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadComments);
+
+        function addComment() {
+            let commentText = document.getElementById("commentInput").value.trim();
+            if (commentText === "") return;
+
+            let commentObj = { text: commentText };
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+            comments.push(commentObj);
+            localStorage.setItem("comments", JSON.stringify(comments));
+
+            renderComments();
+            document.getElementById("commentInput").value = "";
+        }
+
+        function renderComments() {
+            let commentContainer = document.getElementById("commentContainer");
+            commentContainer.innerHTML = "";
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+            comments.forEach((commentObj, index) => {
+                let commentDiv = document.createElement("div");
+                commentDiv.classList.add("comment");
+
+                let options = document.createElement("div");
+                options.classList.add("comment-options");
+
+                let editOption = document.createElement("span");
+                editOption.innerText = "Editar";
+                editOption.onclick = function() {
+                    let newText = prompt("Edita tu comentario:", commentObj.text);
+                    if (newText !== null && newText.trim() !== "") {
+                        comments[index].text = newText.trim();
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                let deleteOption = document.createElement("span");
+                deleteOption.innerText = "Eliminar";
+                deleteOption.onclick = function() {
+                    if (confirm("¿Seguro que quieres eliminar este comentario?")) {
+                        comments.splice(index, 1);
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                options.appendChild(editOption);
+                options.appendChild(deleteOption);
+
+                let commentTextElement = document.createElement("p");
+                commentTextElement.innerText = commentObj.text;
+
+                commentDiv.appendChild(options);
+                commentDiv.appendChild(commentTextElement);
+                commentContainer.appendChild(commentDiv);
+            });
+        }
+
+        function loadComments() {
+            renderComments();
+        }
+    </script>
+
+ </div>
+ 
+<br>
+		 <br>
+		 <br>
+		 <br>
+
+  <!-- Noticias recientes a la derecha -->
+        <div class="recent-news">
+            <h2>Más recientes</h2>
+            <div class="underline"></div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.3uyJ3FQwnSwM52R1U_ta8gHaEK?w=330&h=186&c=7&r=0&o=5&pid=1.7" alt="Artículo 1">
+                <div class="article-text">
+                    <a href="#" class="article-title">El caso de Javier Acosta (Lenguaje)</a>
+                    <div class="article-meta">Un heroe sin capa</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIF.6fUGfQ5VTptwADLPqm5kHw?w=258&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo1.html" class="article-title">El realismo mágico Y Gabo (inglés)        </a>
+                    <div class="article-meta">Un reflejo del alma colombiano</div>
+                </div>
+            </div>
+
+             <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.2c6d6thWyxHci2LJLuXvOQHaFD?w=230&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo3.html" class="article-title"> Verdad oculta del acuerdo de paz</a>
+                    <div class="article-meta">Colombia opina</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://www.lifeder.com/wp-content/uploads/2018/04/realismo-magico-lifeder-libro-min.jpg" alt="Artículo 4">
+                <div class="article-text">
+                    <a href="#" class="article-title">Cuento La sirenita: ¿qué esconde la versión original de Andersen?</a>
+                    <div class="article-meta">Catalina Arancibia Durán 🕒 4 marzo 2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<br>
+		 <br>
+		 <br>
+		 <br>
+
+<footer>
+    <div class="footer-container">
+        
+        <hr>
+        <div class="footer-bottom">
+            <span>2024 - 2025 © SJB</span>
+            <div class="footer-links">
+                <a href="#">Últimas Novedades</a>
+                <a href="#">Populares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos de uso</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">¿Cómo citar?</a>
+                <a href="#">Anuncie</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo 1</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        h1 {  color: black; font-family: Times New Roman, serif; font-size: 20px; }
+        p { max-width: 800px; margin-left: 50px; text-align: left; font-size: 20px; }
+        a { display: block; margin-top: 10px; color: black; font-family: Comic Sans; float: left; margin-left: 50px; text-decoration: none}
+		h2 { color: #4F959D; font-family: Times New Roman; font-size: 50px; text-align: left; margin-left: 50px;}
+		h3 { color: white; font-family: Times New Roman; font-size: 30px; text-align: left; margin-left: 50px;}
+		
+		.navbar {
+            background-color: #a34236; /* Color de fondo */
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+		.container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Contenido principal (artículo) */
+        .content {
+            width: 65%;  /* Ajusta el tamaño según necesites */
+        }
+
+        /* Sección de noticias recientes */
+        .recent-news {
+            width: 30%;  /* Ajusta el tamaño según necesites */
+            margin-left: 20px;
+            position: sticky;
+            top: 20px; /* Para que se mantenga visible mientras se hace scroll */
+        }
+
+        /* Título de "Más recientes" */
+        .recent-news h2 {
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        /* Línea negra debajo del título */
+        .underline {
+            height: 3px;
+            background-color: black;
+            width: 100%;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo de cada artículo */
+        .article {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .article img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .article-text {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .article-title:hover {
+            color: #a34236;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: gray;
+        }
+		
+		/* Estilos generales del footer */
+footer {
+    background-color: #000; /* Fondo completamente negro */
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Contenido dentro del cuadro negro */
+.footer-content {
+    background-color: black;  /* Fondo blanco */
+    color: white;  /* Texto negro */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+
+}
+
+/* Logo y título */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 20px auto;
+    width: 90%;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+}
+
+/* Enlaces del footer */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.comment-section {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+     
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .comment {
+            position: relative;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-options {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .comment-options span {
+            margin-left: 10px;
+        }
+
+        .comment-options span:hover {
+            color: red;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+ <div class="navbar">
+        <div class="logo">
+            <a href="humanidades.html">CULTURA GENIAL</a>
+        </div>
+        <div class="menu">
+            <a href="humanidades.html">Volver al inicio</a>
+            <a href="#">ARQUITECTURA</a>
+            <a href="#">PINTURA</a>
+            <a href="#">CINE</a>
+            
+        </div>
+    </div>
+  
+
+    
+ <br>
+    <br>
+	 <div class="container">
+        <!-- Contenido principal -->
+        <div class="content">
+<h2>Javier Acosta</h2>
+   
+	<p>	
+	En un país donde los temas de salud, muerte digna y derechos humanos aún generan controversias y debates intensos, el caso de Javier Acosta se convirtió en un hito. Este joven de 22 años, que sufrió de una enfermedad terminal debilitante, se hizo conocido no solo por la decisión personal y valiente que tomó en el contexto de su padecimiento, sino también por el impacto social, político y ético que su historia generó en Colombia.</p>
+	
+	
+
+<h2>Contexto y decisión</h2>
+<img src="https://www.portafolio.co/files/article_new_multimedia/uploads/2024/08/30/66d1e59251a8b.jpeg" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 180px; float: left;  width: 500px; height: auto; ">
+		  
+		  <br>
+		   <br>
+		    <br>
+			 <br>
+			  <br>
+			   <br>
+			    <br>
+				 <br>
+				  <br>
+				   <br>
+				    <br>
+					 <br>
+					  <br>
+					   <br>
+					    <br>
+						 <br>
+						  <br>
+		 <p>
+		 Javier Acosta era un joven que vivió con una enfermedad neurológica degenerativa conocida como síndrome de Ehlers-Danlos, una afección rara que afecta los tejidos conectivos y causa dolor intenso, dislocaciones y múltiples complicaciones. Durante años, Javier luchó contra los efectos debilitantes de su enfermedad, los cuales lo llevaron a una condición en la que no solo su calidad de vida se deterioró rápidamente, sino que la posibilidad de una vida digna se desvaneció.
+		  <br>
+		   <br>
+        A pesar de los esfuerzos médicos y tratamientos paliativos, su situación se volvió insostenible. Después de recibir múltiples diagnósticos que aseguraban que su enfermedad era terminal y de ver cómo su calidad de vida se desmoronaba, Javier tomó una decisión que cambiaría su vida y la de muchos en Colombia: solicitó aplicarse la eutanasia.
+		 <br>
+		   <br>
+		La eutanasia es un tema que sigue siendo sumamente controvertido, no solo en Colombia, sino en muchos países. En Colombia, la eutanasia fue despenalizada en 1997, aunque el proceso fue regulado y sujeto a varias restricciones. La solicitud de Javier Acosta para someterse a este procedimiento fue aceptada en 2021 por un comité médico, y su caso se convirtió en un símbolo de la lucha por el derecho a morir con dignidad.
+		</p>
+ 
+ <h2>Impacto social</h2>
+ 
+ 
+ <p>
+ El caso de Javier Acosta generó una ola de reacciones en la sociedad colombiana, dividiendo opiniones sobre la legitimidad de su decisión y la ética de la eutanasia. Para muchos, la decisión de Javier fue una muestra de coraje y dignidad, pues él, al igual que otros pacientes en su situación, buscaba liberarse de un sufrimiento insoportable y obtener el control sobre su propia vida y muerte.
+<br>
+<br>
+Sin embargo, no todos compartieron esta visión. Para sectores conservadores y religiosos, la eutanasia es una práctica inaceptable desde el punto de vista moral, pues consideran que la vida humana debe ser preservada a toda costa, incluso ante el sufrimiento extremo. Estos grupos vieron en la decisión de Javier una amenaza a los valores fundamentales de la vida y una apertura hacia una deshumanización en los procesos de salud.
+<br>
+<br>
+Por otro lado, su caso generó un amplio debate sobre la necesidad de reformar las leyes relacionadas con el acceso a la eutanasia en Colombia, y más aún sobre la forma en que el sistema de salud debe abordar el dolor y la calidad de vida de los pacientes terminales. A través de su historia, Javier Acosta se convirtió en un símbolo de la lucha por el derecho a decidir sobre la propia muerte, un derecho que, según sus defensores, debería ser accesible a todas las personas que se encuentren en situaciones terminales y sufran de enfermedades incurables.
+</p>
+<br>
+<br>
+<img src="https://files.lafm.com.co/assets/public/styles/4x3/public/2024-08/javier_acosta.png?VersionId=260nYFA3dA0MdreC9NSHpKiO_ueWOrwt&itok=m_odhzvT" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <h2>El legado de Javier Acosta</h2>	
+		 
+		 <p>Javier Acosta dejó un legado que trascendió su dolor y su trágica muerte. Su caso evidenció las tensiones entre los derechos individuales y los valores colectivos de la sociedad colombiana, obligando a muchos a reflexionar sobre el concepto de la autonomía personal y los derechos humanos en un contexto de salud y muerte.
+         <br>
+          <br>
+          Más allá de la controversia, su historia promovió un diálogo necesario sobre cómo se debe tratar el sufrimiento humano en el sistema de salud, especialmente cuando los pacientes terminales buscan una salida digna. A raíz de su decisión, muchas voces se alzaron a favor de garantizar el acceso a la eutanasia para todos aquellos que lo soliciten y cuenten con los requisitos legales necesarios, sin importar su origen, situación económica o social.</p>
+ 
+              <h2>Sus Últimas Palabras</h2>
+			  
+              <p>En una de las entrevistas más emotivas y conmovedoras que concedió antes de su procedimiento, Javier Acosta expresó sus pensamientos y sentimientos en un momento de profunda reflexión. En sus palabras, se reflejaba una mezcla de dolor, pero también una serenidad y paz que muchos no podrían imaginar en una situación tan extrema.
+<br>
+          <br>
+<i>"Tomé esta decisión porque ya no podía más. No es que no amara la vida, es que la vida, en las condiciones que me encontraba, ya no me daba ninguna calidad. Mi cuerpo me fallaba a cada segundo, y el dolor era insoportable. A lo largo de mi enfermedad, aprendí que la vida no solo es vivir, también es poder hacer algo con ella, poder disfrutarla, poder sentirte bien. Y ya no lo sentía. No quiero que mi decisión sea vista como una derrota, sino como una forma de recuperar mi dignidad. Yo no quiero que nadie sufra como yo sufrí. No quiero que se olviden de los derechos de las personas a elegir sobre sus propios cuerpos y sobre cómo quieren vivir, o en este caso, cómo quieren morir."</i>
+<br>
+          <br>
+Estas palabras resonaron profundamente en Colombia, pues mostraron una perspectiva personal, cargada de humanidad y reflexión. Javier no solo expresó su dolor físico, sino también el desgaste emocional y psicológico que enfrentó al estar atrapado en un cuerpo que ya no podía controlar.</p>
+   
+   <img src="https://imagenes.primicias.ec/files/image_480_270/uploads/2024/08/30/66d2087888322.jpeg" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 
+				<br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 
+		 
+		 <p>
+El caso de Javier Acosta dejó una huella indeleble en la sociedad colombiana. Más allá de la polémica y las discusiones éticas, su decisión abrió un espacio para la reflexión sobre el derecho a la muerte digna y sobre cómo la sociedad y el sistema de salud deben acompañar a los pacientes en situaciones extremas.
+<br>
+		 <br>
+La historia de Javier Acosta sigue siendo un tema de debate en Colombia, no solo en los círculos políticos, sino también en el corazón de las personas que, como él, enfrentan enfermedades terminales. Su vida y su muerte nos recuerdan que el derecho a decidir sobre nuestro propio cuerpo es una de las cuestiones más fundamentales en la lucha por los derechos humanos.
+<br>
+		 <br>
+		  <i> Para ver la interfaz,
+ <a href="https://www.canva.com/design/DAGhfD94p00/TGQgoTSpQBcvy2jHnvHG9A/edit?utm_content=DAGhfD94p00&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank"
+ rel="noopener noreferrer">haz click aquí</a>.</i></p>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+  <div class="comment-section">
+        <h1>Deja tu comentario</h1>
+        <textarea id="commentInput" placeholder="Escribe tu comentario..."></textarea>
+        <button class="submit-btn" onclick="addComment()">Publicar</button>
+
+        <div id="commentContainer">
+            <!-- Aquí aparecerán los comentarios -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadComments);
+
+        function addComment() {
+            let commentText = document.getElementById("commentInput").value.trim();
+            if (commentText === "") return;
+
+            let commentObj = { text: commentText };
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+            comments.push(commentObj);
+            localStorage.setItem("comments", JSON.stringify(comments));
+
+            renderComments();
+            document.getElementById("commentInput").value = "";
+        }
+
+        function renderComments() {
+            let commentContainer = document.getElementById("commentContainer");
+            commentContainer.innerHTML = "";
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+            comments.forEach((commentObj, index) => {
+                let commentDiv = document.createElement("div");
+                commentDiv.classList.add("comment");
+
+                let options = document.createElement("div");
+                options.classList.add("comment-options");
+
+                let editOption = document.createElement("span");
+                editOption.innerText = "Editar";
+                editOption.onclick = function() {
+                    let newText = prompt("Edita tu comentario:", commentObj.text);
+                    if (newText !== null && newText.trim() !== "") {
+                        comments[index].text = newText.trim();
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                let deleteOption = document.createElement("span");
+                deleteOption.innerText = "Eliminar";
+                deleteOption.onclick = function() {
+                    if (confirm("¿Seguro que quieres eliminar este comentario?")) {
+                        comments.splice(index, 1);
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                options.appendChild(editOption);
+                options.appendChild(deleteOption);
+
+                let commentTextElement = document.createElement("p");
+                commentTextElement.innerText = commentObj.text;
+
+                commentDiv.appendChild(options);
+                commentDiv.appendChild(commentTextElement);
+                commentContainer.appendChild(commentDiv);
+            });
+        }
+
+        function loadComments() {
+            renderComments();
+        }
+    </script>
+
+ </div>
+ 
+<br>
+		 <br>
+		 <br>
+		 <br>
+
+  <!-- Noticias recientes a la derecha -->
+        <div class="recent-news">
+            <h2>Más recientes</h2>
+            <div class="underline"></div>
+
+            <div class="article">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/CatedralPrimadaBogota2004-7.jpg/241px-CatedralPrimadaBogota2004-7.jpg">
+                <div class="article-text">
+                    <a href="articulo5.html" class="article-title">Religion y politica en Colombia</a>
+                    <div class="article-meta">Las comundiades indígenas</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.2c6d6thWyxHci2LJLuXvOQHaFD?w=230&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo3.html" class="article-title"> Verdad oculta del acuerdo de paz</a>
+                    <div class="article-meta">Colombia opina</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://cdn.colombia.com/sdi/2023/05/24/colombia-toma-medidas-frente-a-violencia-de-genero-1150277.jpg" alt="Artículo 3">
+                <div class="article-text">
+                    <a href="articulo2.html" class="article-title">La violencia de genero en Colombia</a>
+                    <div class="article-meta">Ni una menos</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://panamericana.vtexassets.com/arquivos/ids/521184-800-auto?v=638370428930630000&width=800&height=auto&aspect=true" alt="Artículo 4">
+                <div class="article-text">
+                    <a href="#" class="article-title">Puede la ficción compararse con la realidad?</a>
+                    <div class="article-meta">El principio de Karenina</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<br>
+		 <br>
+		 <br>
+		 <br>
+
+<footer>
+    <div class="footer-container">
+        
+        <hr>
+        <div class="footer-bottom">
+            <span>2024 - 2025 © SJB</span>
+            <div class="footer-links">
+                <a href="#">Últimas Novedades</a>
+                <a href="#">Populares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos de uso</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">¿Cómo citar?</a>
+                <a href="#">Anuncie</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>
+
+ 

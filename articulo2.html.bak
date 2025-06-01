@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo 1</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        h1 {  color: black; font-family: Times New Roman, serif; font-size: 20px; }
+        p { max-width: 800px; margin-left: 50px; text-align: left; font-size: 20px; }
+        a { display: block; margin-top: 10px; color: black; font-family: Comic Sans; float: left; margin-left: 50px; text-decoration: none}
+		h2 { color: #B17F59; font-family: Times New Roman; font-size: 50px; text-align: left; margin-left: 50px;}
+		h3 { color: white; font-family: Times New Roman; font-size: 30px; text-align: left; margin-left: 50px;}
+		
+		.navbar {
+            background-color: #a34236; /* Color de fondo */
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+		.container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Contenido principal (artículo) */
+        .content {
+            width: 65%;  /* Ajusta el tamaño según necesites */
+        }
+
+        /* Sección de noticias recientes */
+        .recent-news {
+            width: 30%;  /* Ajusta el tamaño según necesites */
+            margin-left: 20px;
+            position: sticky;
+            top: 20px; /* Para que se mantenga visible mientras se hace scroll */
+        }
+
+        /* Título de "Más recientes" */
+        .recent-news h2 {
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        /* Línea negra debajo del título */
+        .underline {
+            height: 3px;
+            background-color: black;
+            width: 100%;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo de cada artículo */
+        .article {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .article img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .article-text {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .article-title:hover {
+            color: #a34236;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: gray;
+        }
+		
+		/* Estilos generales del footer */
+footer {
+    background-color: #000; /* Fondo completamente negro */
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Contenido dentro del cuadro negro */
+.footer-content {
+    background-color: black;  /* Fondo blanco */
+    color: white;  /* Texto negro */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+
+}
+
+/* Logo y título */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 20px auto;
+    width: 90%;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+}
+
+/* Enlaces del footer */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.comment-section {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+     
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .comment {
+            position: relative;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-options {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .comment-options span {
+            margin-left: 10px;
+        }
+
+        .comment-options span:hover {
+            color: red;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+ <div class="navbar">
+        <div class="logo">
+            <a href="humanidades.html">CULTURA GENIAL</a>
+        </div>
+        <div class="menu">
+            <a href="humanidades.html">Volver al inicio</a>
+            <a href="#">ARQUITECTURA</a>
+            <a href="#">PINTURA</a>
+            <a href="#">CINE</a>
+            
+        </div>
+    </div>
+  
+
+    
+ <br>
+    <br>
+	 <div class="container">
+        <!-- Contenido principal -->
+        <div class="content">
+<h2>El segundo sexo</h2>
+   
+	<p>	
+	La violencia de género es una de las problemáticas más graves y persistentes en Colombia. A pesar de los avances en normativas y políticas públicas, las mujeres y personas de género diverso continúan enfrentando agresiones, discriminación y falta de acceso a la justicia. Esta situación nos obliga a cuestionar la ética política de los gobiernos y la sociedad en su conjunto: ¿estamos realmente comprometidos con erradicar esta violencia o seguimos normalizándola bajo estructuras de poder injustas?</p>
+	
+	
+
+<h2>Responsabilidad gubernamental</h2>
+<img src="https://th.bing.com/th/id/OIP.0lBQW0jzn7jhkOrieWOsqgHaEK?w=1200&h=675&rs=1&pid=ImgDetMain" 
+         alt="Acuerdo de paz" 
+         style="width: 40%; margin-left: 180px; float: left;  width: 500px; height: auto; ">
+		  
+		  <br>
+		   <br>
+		    <br>
+			 <br>
+			  <br>
+			   <br>
+			    <br>
+				 <br>
+				  <br>
+				   <br>
+				    <br>
+					 <br>
+					  <br>
+					   <br>
+					    <br>
+						 <br>
+						  <br>
+		 <p>
+		La ética política demanda que el Estado garantice la protección de los derechos fundamentales de toda la ciudadanía. Sin embargo, en el caso de la violencia de género, la respuesta institucional ha sido insuficiente. Las cifras de feminicidios siguen en aumento, las rutas de atención son precarias y la impunidad predomina en la mayoría de los casos.
+		  <br>
+		   <br>
+         Nos enfrentamos a una pregunta fundamental: ¿Puede un Estado ser legítimo si no protege a la mitad de su población de una violencia sistemática?</b></em></p>
+ 
+ <h2>Justicia social: ¿para quién?</h2>
+ 
+ 
+ <p>
+ El discurso de la justicia social ha sido ampliamente utilizado por los gobiernos, pero la realidad muestra una gran brecha entre lo prometido y lo cumplido. Las mujeres en zonas rurales, indígenas, afrodescendientes y de bajos recursos son las más vulnerables ante la violencia de género y, al mismo tiempo, las más invisibilizadas por las políticas públicas.
+<br>
+<br>
+Si la justicia social implica equidad y reparación, entonces cabe preguntarse: ¿Es realmente justa una sociedad donde las mujeres deben luchar cada día por su derecho a vivir sin violencia?</p>
+<br>
+<br>
+<img src="https://noticias.unsam.edu.ar/wp-content/uploads/2021/06/MF1-2-800x494.png" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <h2>Cultura y responsabilidad colectiva</h2>	
+		 
+		 <p>Más allá del Estado, la violencia de género está enraizada en prácticas culturales que perpetúan el machismo y la desigualdad. La educación, los medios de comunicación y las redes sociales juegan un papel clave en la reproducción de narrativas que justifican o minimizan esta violencia. La lucha contra el problema no puede ser solo institucional, sino también social y cultural.
+         <br>
+          <br>
+           Esto nos lleva a reflexionar: <em><b>¿Cómo podemos transformar una sociedad que ha normalizado la violencia contra las mujeres y diversidades de género?</b></em></p>
+ 
+              <h2>¿Qué nos dice la ética sobre nuestro futuro?</h2>
+			  
+              <p>Desde una perspectiva ética, la lucha contra la violencia de género no es solo un asunto de derechos humanos, sino una cuestión de justicia y equidad. No se trata únicamente de leyes y sanciones, sino de un cambio estructural en la forma en que concebimos las relaciones de género y el poder.
+<br>
+          <br>
+Finalmente, queda una pregunta abierta para la reflexión de cada ciudadano: <em><b>¿Estamos dispuestos, como sociedad, a asumir la responsabilidad de erradicar la violencia de género, o seguiremos permitiendo que sea una tragedia cotidiana que solo conmueve cuando se convierte en titular?</b></em>
+<br>
+          <br>
+</p>
+   
+   <img src="https://cdn.colombia.com/sdi/2023/05/24/colombia-toma-medidas-frente-a-violencia-de-genero-1150277.jpg" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 
+				<br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 
+		 
+		 <p><em>
+"Nos dijeron que éramos iguales, que teníamos los mismos derechos, pero seguimos muriendo en silencio. Nos hablaron de justicia, pero las cifras de impunidad nos gritan lo contrario. No queremos discursos vacíos ni más promesas; queremos que nuestras vidas no dependan de la voluntad de un sistema que nos ha fallado una y otra vez. La paz no es solo la ausencia de guerra, es la erradicación de todas las violencias. ¿Cuándo llegará el día en que vivir sin miedo no sea un privilegio, sino un derecho garantizado?" </em></p>
+<br>
+		 <br>
+		 <br>
+		 <br>
+  <div class="comment-section">
+        <h1>¿Opiniones sobre el tema? </h1>
+        <textarea id="commentInput" placeholder="Escribe tu comentario..."></textarea>
+        <button class="submit-btn" onclick="addComment()">Publicar</button>
+
+        <div id="commentContainer">
+            <!-- Aquí aparecerán los comentarios -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadComments);
+
+        function addComment() {
+            let commentText = document.getElementById("commentInput").value.trim();
+            if (commentText === "") return;
+
+            let commentObj = { text: commentText };
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+            comments.push(commentObj);
+            localStorage.setItem("comments", JSON.stringify(comments));
+
+            renderComments();
+            document.getElementById("commentInput").value = "";
+        }
+
+        function renderComments() {
+            let commentContainer = document.getElementById("commentContainer");
+            commentContainer.innerHTML = "";
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+            comments.forEach((commentObj, index) => {
+                let commentDiv = document.createElement("div");
+                commentDiv.classList.add("comment");
+
+                let options = document.createElement("div");
+                options.classList.add("comment-options");
+
+                let editOption = document.createElement("span");
+                editOption.innerText = "Editar";
+                editOption.onclick = function() {
+                    let newText = prompt("Edita tu comentario:", commentObj.text);
+                    if (newText !== null && newText.trim() !== "") {
+                        comments[index].text = newText.trim();
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                let deleteOption = document.createElement("span");
+                deleteOption.innerText = "Eliminar";
+                deleteOption.onclick = function() {
+                    if (confirm("¿Seguro que quieres eliminar este comentario?")) {
+                        comments.splice(index, 1);
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                options.appendChild(editOption);
+                options.appendChild(deleteOption);
+
+                let commentTextElement = document.createElement("p");
+                commentTextElement.innerText = commentObj.text;
+
+                commentDiv.appendChild(options);
+                commentDiv.appendChild(commentTextElement);
+                commentContainer.appendChild(commentDiv);
+            });
+        }
+
+        function loadComments() {
+            renderComments();
+        }
+    </script>
+
+ </div>
+ 
+<br>
+		 <br>
+		 <br>
+		 <br>
+
+  <!-- Noticias recientes a la derecha -->
+        <div class="recent-news">
+            <h2>Más recientes</h2>
+            <div class="underline"></div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.3uyJ3FQwnSwM52R1U_ta8gHaEK?w=330&h=186&c=7&r=0&o=5&pid=1.7" alt="Artículo 1">
+                <div class="article-text">
+                    <a href="#" class="article-title">El caso de Javier Acosta (Lenguaje)</a>
+                    <div class="article-meta">Un heroe sin capa</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIF.6fUGfQ5VTptwADLPqm5kHw?w=258&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo1.html" class="article-title">El realismo mágico Y Gabo (inglés)        </a>
+                    <div class="article-meta">Un reflejo del alma colombiano</div>
+                </div>
+            </div>
+
+             <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.2c6d6thWyxHci2LJLuXvOQHaFD?w=230&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo3.html" class="article-title"> Verdad oculta del acuerdo de paz</a>
+                    <div class="article-meta">Colombia opina</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://www.lifeder.com/wp-content/uploads/2018/04/realismo-magico-lifeder-libro-min.jpg" alt="Artículo 4">
+                <div class="article-text">
+                    <a href="#" class="article-title">Cuento La sirenita: ¿qué esconde la versión original de Andersen?</a>
+                    <div class="article-meta">Catalina Arancibia Durán 🕒 4 marzo 2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<br>
+		 <br>
+		 <br>
+		 <br>
+
+<footer>
+    <div class="footer-container">
+        
+        <hr>
+        <div class="footer-bottom">
+            <span>2024 - 2025 © SJB</span>
+            <div class="footer-links">
+                <a href="#">Últimas Novedades</a>
+                <a href="#">Populares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos de uso</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">¿Cómo citar?</a>
+                <a href="#">Anuncie</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>

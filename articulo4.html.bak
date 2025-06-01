@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo 1</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        h1 {  color: black; font-family: Times New Roman, serif; font-size: 20px; }
+        p { max-width: 800px; margin-left: 50px; text-align: left; font-size: 20px; }
+        a { display: block; margin-top: 10px; color: black; font-family: Comic Sans; float: left; margin-left: 50px; text-decoration: none}
+		h2 { color: #A31D1D; font-family: Times New Roman; font-size: 50px; text-align: left; margin-left: 50px;}
+		h3 { color: white; font-family: Times New Roman; font-size: 30px; text-align: left; margin-left: 50px;}
+		
+		.navbar {
+            background-color: #a34236; /* Color de fondo */
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+		.container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Contenido principal (artículo) */
+        .content {
+            width: 65%;  /* Ajusta el tamaño según necesites */
+        }
+
+        /* Sección de noticias recientes */
+        .recent-news {
+            width: 30%;  /* Ajusta el tamaño según necesites */
+            margin-left: 20px;
+            position: sticky;
+            top: 20px; /* Para que se mantenga visible mientras se hace scroll */
+        }
+
+        /* Título de "Más recientes" */
+        .recent-news h2 {
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        /* Línea negra debajo del título */
+        .underline {
+            height: 3px;
+            background-color: black;
+            width: 100%;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo de cada artículo */
+        .article {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .article img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .article-text {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .article-title:hover {
+            color: #a34236;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: gray;
+        }
+		
+		/* Estilos generales del footer */
+footer {
+    background-color: #000; /* Fondo completamente negro */
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Contenido dentro del cuadro negro */
+.footer-content {
+    background-color: black;  /* Fondo blanco */
+    color: white;  /* Texto negro */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+
+}
+
+/* Logo y título */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 20px auto;
+    width: 90%;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+}
+
+/* Enlaces del footer */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.comment-section {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+     
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .comment {
+            position: relative;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-options {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .comment-options span {
+            margin-left: 10px;
+        }
+
+        .comment-options span:hover {
+            color: red;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+ <div class="navbar">
+        <div class="logo">
+            <a href="humanidades.html">CULTURA GENIAL</a>
+        </div>
+        <div class="menu">
+            <a href="humanidades.html">Volver al inicio</a>
+            <a href="#">ARQUITECTURA</a>
+            <a href="#">PINTURA</a>
+            <a href="#">CINE</a>
+            
+        </div>
+    </div>
+  
+
+    
+ <br>
+    <br>
+	 <div class="container">
+        <!-- Contenido principal -->
+        <div class="content">
+<h2>El principio de Karenina</h2>
+   
+	<p>	
+	El Principio de Karenina es una obra que, desde la literatura contemporánea, explora el peso del destino, la tragedia y la imposibilidad de escapar a ciertos patrones de la vida. Tomando como referencia el axioma de Tolstói en Ana Karenina (“Todas las familias felices se parecen unas a otras, pero cada familia infeliz lo es a su manera”), la novela plantea cómo ciertos eventos parecen condenados a repetirse bajo una lógica implacable de causa y consecuencia. Desde esta perspectiva, es posible conectar sus temas con aspectos fundamentales de la historia, la filosofía y la religión en el contexto colombiano, especialmente en lo que respecta a la violencia, el destino social y la redención a través del sufrimiento.</p>
+	
+	
+
+<h2>Historia: El Ciclo de la Violencia en Colombia</h2>
+<img src="https://th.bing.com/th/id/R.b07b90ac6dc66a67c3d236298365ef68?rik=4rpjPqcuW%2bJTGg&pid=ImgRaw&r=0" 
+         alt="Acuerdo de paz" 
+         style="width: 40%; margin-left: 180px; float: left;  width: 500px; height: auto; ">
+		  
+		  <br>
+		   <br>
+		    <br>
+			 <br>
+			  <br>
+			   <br>
+			    <br>
+				 <br>
+				  <br>
+				   <br>
+				    <br>
+					 <br>
+					  <br>
+					   <br>
+					    <br>
+						 <br>
+						  <br>
+		 <p>
+		 La estructura narrativa de El Principio de Karenina refleja el carácter cíclico de la historia colombiana, en la que la violencia política, social y armada parece reproducirse generación tras generación. Desde las guerras civiles del siglo XIX hasta el conflicto contemporáneo, la repetición de los errores, las traiciones y las víctimas deshumanizadas han sido una constante en el devenir del país. La novela expone, de manera filosófica, la dificultad de romper con este destino, sugiriendo que los individuos están atrapados en un mecanismo que los arrastra sin posibilidad de escape, tal como las generaciones colombianas han visto la violencia como una especie de herencia ineludible.
+		  <br>
+		   <br>
+         A esto se suma la incapacidad del Estado y de las instituciones para erradicar las causas profundas del conflicto. La corrupción, la impunidad y la falta de voluntad política han reforzado la sensación de que, sin importar los intentos de reforma, la historia está condenada a repetirse. En este sentido, El Principio de Karenina funciona como un espejo literario de la realidad colombiana, donde los personajes, atrapados en una red de decisiones ajenas, se ven obligados a cumplir un destino que no han elegido.</p>
+ 
+ <h2>Filosofía: Determinismo y Libre Albedrío</h2>
+ 
+ 
+ <p>
+ En la obra, la idea del destino juega un papel fundamental: los personajes parecen atrapados en situaciones que los superan, lo que lleva a reflexionar sobre el papel del determinismo en la condición humana. En el contexto colombiano, esta discusión cobra relevancia en la medida en que se cuestiona hasta qué punto las decisiones individuales pueden realmente desafiar las estructuras de poder, la violencia sistémica y la desigualdad social.
+<br>
+<br>
+El determinismo filosófico sugiere que cada evento es el resultado inevitable de condiciones previas, lo que en Colombia se traduce en la idea de que la violencia y la exclusión son parte de un destino inamovible. Sin embargo, también existe la posibilidad del libre albedrío, la idea de que los individuos y las sociedades pueden cambiar su curso. El Principio de Karenina desafía esta dicotomía al mostrar personajes que intentan rebelarse contra su destino, aunque la mayoría termina atrapada en la misma lógica de la tragedia.
+<br>
+<br>
+Esto nos lleva a preguntar: ¿Es posible romper con los ciclos de violencia y desigualdad que han marcado la historia del país, o estamos condenados a repetir los mismos errores una y otra vez?</p>
+<br>
+<br>
+<img src="https://panamericana.vtexassets.com/arquivos/ids/521184-800-auto?v=638370428930630000&width=800&height=auto&aspect=true" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <h2>Religión: La Explicación del Sufrimiento</h2>	
+		 
+		 <p>El cristianismo ha jugado un papel fundamental en la configuración moral de Colombia, y El Principio de Karenina también puede analizarse desde la óptica religiosa. La novela plantea el sufrimiento como un elemento ineludible de la existencia, algo que se encuentra profundamente arraigado en la cultura católica del país. La redención a través del dolor, la expiación de culpas y la búsqueda de salvación son temas que resuenan tanto en la obra como en la tradición religiosa colombiana. En este sentido, la historia refleja la tensión entre la resignación cristiana ante el sufrimiento y la posibilidad de una revolución ética que permita cambiar el destino.
+         
+          </p>
+ 
+              <h2>Conclusión</h2>
+			  
+              <p>El Principio de Karenina no solo es una reflexión sobre el destino individual, sino también una metáfora del destino colectivo. En Colombia, donde la historia parece repetirse de manera incesante, la novela ofrece un espejo filosófico que invita a cuestionar hasta qué punto los individuos pueden desafiar la lógica de la tragedia y buscar una verdadera transformación. ¿Es posible cambiar el curso de los acontecimientos o, como en la novela, estamos atrapados en una espiral de fatalidad? La respuesta queda abierta a la interpretación del lector.
+
+<br>
+          <br>
+</p>
+   
+   <img src="https://es.zenit.org/wp-content/uploads/sites/3/2022/05/colom.jpg" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 
+				<br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 
+		 
+		 <p><em>
+En un país donde la memoria histórica se entrelaza con la injusticia social y la lucha por la dignidad, El Principio de Karenina se convierte en una obra imprescindible para reflexionar sobre la realidad colombiana y el papel de cada individuo en la construcción de un futuro diferente.
+
+ </em></p>
+<br>
+		 <br>
+		 <br>
+		 <br>
+  <div class="comment-section">
+        <h1>Participia en nuestro foro! </h1>
+        <textarea id="commentInput" placeholder="Escribe tu comentario..."></textarea>
+        <button class="submit-btn" onclick="addComment()">Publicar</button>
+
+        <div id="commentContainer">
+            <!-- Aquí aparecerán los comentarios -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadComments);
+
+        function addComment() {
+            let commentText = document.getElementById("commentInput").value.trim();
+            if (commentText === "") return;
+
+            let commentObj = { text: commentText };
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+            comments.push(commentObj);
+            localStorage.setItem("comments", JSON.stringify(comments));
+
+            renderComments();
+            document.getElementById("commentInput").value = "";
+        }
+
+        function renderComments() {
+            let commentContainer = document.getElementById("commentContainer");
+            commentContainer.innerHTML = "";
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+            comments.forEach((commentObj, index) => {
+                let commentDiv = document.createElement("div");
+                commentDiv.classList.add("comment");
+
+                let options = document.createElement("div");
+                options.classList.add("comment-options");
+
+                let editOption = document.createElement("span");
+                editOption.innerText = "Editar";
+                editOption.onclick = function() {
+                    let newText = prompt("Edita tu comentario:", commentObj.text);
+                    if (newText !== null && newText.trim() !== "") {
+                        comments[index].text = newText.trim();
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                let deleteOption = document.createElement("span");
+                deleteOption.innerText = "Eliminar";
+                deleteOption.onclick = function() {
+                    if (confirm("¿Seguro que quieres eliminar este comentario?")) {
+                        comments.splice(index, 1);
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                options.appendChild(editOption);
+                options.appendChild(deleteOption);
+
+                let commentTextElement = document.createElement("p");
+                commentTextElement.innerText = commentObj.text;
+
+                commentDiv.appendChild(options);
+                commentDiv.appendChild(commentTextElement);
+                commentContainer.appendChild(commentDiv);
+            });
+        }
+
+        function loadComments() {
+            renderComments();
+        }
+    </script>
+
+ </div>
+ 
+<br>
+		 <br>
+		 <br>
+		 <br>
+
+  <!-- Noticias recientes a la derecha -->
+        <div class="recent-news">
+            <h2>Más recientes</h2>
+            <div class="underline"></div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.3uyJ3FQwnSwM52R1U_ta8gHaEK?w=330&h=186&c=7&r=0&o=5&pid=1.7" alt="Artículo 1">
+                <div class="article-text">
+                    <a href="#" class="article-title">El caso de Javier Acosta (Lenguaje)</a>
+                    <div class="article-meta">Un heroe sin capa</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIF.6fUGfQ5VTptwADLPqm5kHw?w=258&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo1.html" class="article-title">El realismo mágico Y Gabo (inglés)        </a>
+                    <div class="article-meta">Un reflejo del alma colombiano</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.2c6d6thWyxHci2LJLuXvOQHaFD?w=230&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo3.html" class="article-title"> Verdad oculta del acuerdo de paz</a>
+                    <div class="article-meta">Colombia opina</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://www.lifeder.com/wp-content/uploads/2018/04/realismo-magico-lifeder-libro-min.jpg" alt="Artículo 4">
+                <div class="article-text">
+                    <a href="#" class="article-title">Cuento La sirenita: ¿qué esconde la versión original de Andersen?</a>
+                    <div class="article-meta">Catalina Arancibia Durán 🕒 4 marzo 2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<br>
+		 <br>
+		 <br>
+		 <br>
+
+<footer>
+    <div class="footer-container">
+        
+        <hr>
+        <div class="footer-bottom">
+            <span>2024 - 2025 © SJB</span>
+            <div class="footer-links">
+                <a href="#">Últimas Novedades</a>
+                <a href="#">Populares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos de uso</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">¿Cómo citar?</a>
+                <a href="#">Anuncie</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>

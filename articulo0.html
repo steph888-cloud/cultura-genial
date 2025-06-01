@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artículo 1</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        h1 {  color: black; font-family: Times New Roman, serif; font-size: 20px; }
+        p { max-width: 800px; margin-left: 50px; text-align: left; font-size: 20px; }
+        a { display: block; margin-top: 10px; color: black; font-family: Comic Sans; float: left; margin-left: 50px; text-decoration: none}
+		h2 { color: #A31D1D; font-family: Times New Roman; font-size: 50px; text-align: left; margin-left: 50px;}
+		h3 { color: white; font-family: Times New Roman; font-size: 30px; text-align: left; margin-left: 50px;}
+		
+		.navbar {
+            background-color: #a34236; /* Color de fondo */
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000; 
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        {
+            margin-top: 80px; 
+            padding: 20px;
+        }
+		.container {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Contenido principal (artículo) */
+        .content {
+            width: 65%;  /* Ajusta el tamaño según necesites */
+        }
+
+        /* Sección de noticias recientes */
+        .recent-news {
+            width: 30%;  /* Ajusta el tamaño según necesites */
+            margin-left: 20px;
+            position: sticky;
+            top: 20px; /* Para que se mantenga visible mientras se hace scroll */
+        }
+
+        /* Título de "Más recientes" */
+        .recent-news h2 {
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        /* Línea negra debajo del título */
+        .underline {
+            height: 3px;
+            background-color: black;
+            width: 100%;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo de cada artículo */
+        .article {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .article img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .article-text {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .article-title:hover {
+            color: #a34236;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: gray;
+        }
+		
+		/* Estilos generales del footer */
+footer {
+    background-color: #000; /* Fondo completamente negro */
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+}
+
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Contenido dentro del cuadro negro */
+.footer-content {
+    background-color: black;  /* Fondo blanco */
+    color: white;  /* Texto negro */
+    padding: 20px;
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+
+}
+
+/* Logo y título */
+.footer-logo {
+    display: flex;
+    align-items: left;
+    margin-bottom: 15px;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Línea divisoria */
+hr {
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 20px auto;
+    width: 90%;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: auto;
+    color: white;
+}
+
+/* Enlaces del footer */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.comment-section {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+     
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .comment {
+            position: relative;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-options {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 12px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .comment-options span {
+            margin-left: 10px;
+        }
+
+        .comment-options span:hover {
+            color: red;
+        }
+
+        .submit-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+ <div class="navbar">
+        <div class="logo">
+            <a href="humanidades.html">CULTURA GENIAL</a>
+        </div>
+        <div class="menu">
+            <a href="humanidades.html">Volver al inicio</a>
+            <a href="#">ARQUITECTURA</a>
+            <a href="#">PINTURA</a>
+            <a href="#">CINE</a>
+            
+        </div>
+    </div>
+  
+
+    
+ <br>
+    <br>
+	 <div class="container">
+        <!-- Contenido principal -->
+        <div class="content">
+<h2>Romeo y Julieta</h2>
+   
+	<p>	
+	Romeo y Julieta, la emblemática obra de William Shakespeare, no solo es un clásico literario, sino también una profunda reflexión sobre la condición humana, marcada por los extremos del amor y el odio. En la trama de la obra, dos jóvenes se ven atrapados en un conflicto ancestral entre sus familias, los Montesco y los Capuleto, lo que lleva a una tragedia que podría haberse evitado. Este drama, que ha trascendido generaciones y culturas, guarda paralelismos interesantes con la historia reciente de Colombia, un país marcado por un conflicto armado interno que ha perdurado durante más de medio siglo.
+
+<h2>	Conflicto colombiano</h2>
+<img src="https://alfayomega.es/wp-content/uploads/2019/01/TriunfoAmor1.jpg" 
+         alt="Acuerdo de paz" 
+         style="width: 40%; margin-left: 180px; float: left;  width: 500px; height: auto; ">
+		  
+		  <br>
+		   <br>
+		    <br>
+			 <br>
+			  <br>
+			   <br>
+			    <br>
+				 <br>
+				  <br>
+				   <br>
+				    <br>
+					 <br>
+					  <br>
+					   <br>
+					    <br>
+						 <br>
+						  <br>
+		 <p>
+		 Así como en Romeo y Julieta, los protagonistas son víctimas de un odio ancestral entre sus familias, en Colombia la violencia ha sido alimentada por rencores históricos y por la polarización política, social y económica. La lucha entre los diversos actores armados, a lo largo de décadas, ha dividido a la sociedad colombiana, dejando un país marcado por el sufrimiento y la violencia. Esta lucha perpetuó un ciclo de dolor, que transformó la vida de generaciones enteras, creando una barrera entre las diferentes partes implicadas, tal como sucedió con los Montesco y los Capuleto.
+		 <br>
+		   <br>
+        Sin embargo, en la misma medida en que Romeo y Julieta es una tragedia, también es una reflexión sobre la posibilidad de la reconciliación. La tragedia no es un final inevitable; es un llamado de atención sobre los costos que tiene la perpetuación del odio. Este mismo mensaje resuena con fuerza en el contexto colombiano, especialmente después de la firma de los acuerdos de paz con las FARC en 2016, que representaron un intento por romper el ciclo de violencia que había desgarrado al país durante más de 50 años.
+ <h2>Tragedia como advertencia</h2>
+ 
+ 
+ <p>
+En Romeo y Julieta, la tragedia de los jóvenes amantes finalmente lleva a la reconciliación entre las familias enfrentadas. Sin embargo, la muerte de ambos protagonistas es un recordatorio sombrío de los costos de la intolerancia y el odio perpetuado por generaciones. En este sentido, la obra sirve como una advertencia sobre los efectos devastadores de los conflictos prolongados y la incapacidad de dialogar y ceder ante las diferencias. Este es un tema profundamente relevante en Colombia, donde los acuerdos de paz han sido seguidos por desafíos persistentes, como la violencia residual y las dificultades para implementar plenamente los acuerdos.
+<br>
+<br>
+El sacrificio de Romeo y Julieta subraya un punto crucial en los procesos de paz: la necesidad de transformar la sociedad en su conjunto para que la reconciliación sea posible. No basta con la firma de un acuerdo; es necesario un cambio cultural profundo, donde el perdón y la construcción de confianza se conviertan en los pilares de una nueva nación.
+<br>
+<br>
+
+<img src="https://wp.es.aleteia.org/wp-content/uploads/sites/7/2017/04/web-paint-romeo-juliet-dicksee-public-domain.jpg" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 800px; height: auto;">
+		 
+		
+		 
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+				  <br>
+				  <br>
+				  <br>
+				  <br>
+				  <br>
+				  <br>
+				  <br>
+				  <br>
+				  <br>
+		 <h2>Un camino hacia la reconciliación</h2>	
+		 
+		 <p>La firma de los acuerdos de paz en Colombia, aunque celebrada como un paso fundamental hacia la reconciliación, no ha sido exenta de desafíos. Al igual que los Montesco y los Capuleto, las partes involucradas en el conflicto colombiano —el gobierno, las guerrillas, los paramilitares y las víctimas— no lograban encontrar un terreno común. En muchos aspectos, la dificultad de lograr la paz en Colombia refleja la tensión central de Romeo y Julieta: la lucha entre la reconciliación y los intereses creados por años de conflicto.
+          </p>
+ 
+              <h2>Conclusión</h2>
+			  
+              <p>La historia de Romeo y Julieta y la experiencia de Colombia, marcada por décadas de violencia y los esfuerzos por alcanzar la paz, son dos narrativas que se entrelazan en su reflexión sobre los efectos devastadores del odio y la importancia de la reconciliación. Si bien la tragedia de Shakespeare culmina en la muerte de los protagonistas, en el caso colombiano la esperanza está puesta en la posibilidad de una paz duradera, aunque sea un proceso largo y complicado.
+<br>
+          <br>
+		  <i> Para ver la reseña de el principio de Karenina,
+ <a href="articulo2.html" target="_blank"
+ rel="noopener noreferrer">haz click aquí</a>.</i>
+</p>
+   
+   <img src="data:image/jpeg;base64,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" 
+         alt="Realismo Mágico" 
+         style="width: 40%; margin-left: 50px; float: left; width: 700px; height: auto;">
+		 
+				<br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 <br>
+		 
+		 
+		 
+
+  <div class="comment-section">
+        <h1>Participia en nuestro foro! </h1>
+        <textarea id="commentInput" placeholder="Escribe tu comentario..."></textarea>
+        <button class="submit-btn" onclick="addComment()">Publicar</button>
+
+        <div id="commentContainer">
+            <!-- Aquí aparecerán los comentarios -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadComments);
+
+        function addComment() {
+            let commentText = document.getElementById("commentInput").value.trim();
+            if (commentText === "") return;
+
+            let commentObj = { text: commentText };
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+            comments.push(commentObj);
+            localStorage.setItem("comments", JSON.stringify(comments));
+
+            renderComments();
+            document.getElementById("commentInput").value = "";
+        }
+
+        function renderComments() {
+            let commentContainer = document.getElementById("commentContainer");
+            commentContainer.innerHTML = "";
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+            comments.forEach((commentObj, index) => {
+                let commentDiv = document.createElement("div");
+                commentDiv.classList.add("comment");
+
+                let options = document.createElement("div");
+                options.classList.add("comment-options");
+
+                let editOption = document.createElement("span");
+                editOption.innerText = "Editar";
+                editOption.onclick = function() {
+                    let newText = prompt("Edita tu comentario:", commentObj.text);
+                    if (newText !== null && newText.trim() !== "") {
+                        comments[index].text = newText.trim();
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                let deleteOption = document.createElement("span");
+                deleteOption.innerText = "Eliminar";
+                deleteOption.onclick = function() {
+                    if (confirm("¿Seguro que quieres eliminar este comentario?")) {
+                        comments.splice(index, 1);
+                        localStorage.setItem("comments", JSON.stringify(comments));
+                        renderComments();
+                    }
+                };
+
+                options.appendChild(editOption);
+                options.appendChild(deleteOption);
+
+                let commentTextElement = document.createElement("p");
+                commentTextElement.innerText = commentObj.text;
+
+                commentDiv.appendChild(options);
+                commentDiv.appendChild(commentTextElement);
+                commentContainer.appendChild(commentDiv);
+            });
+        }
+
+        function loadComments() {
+            renderComments();
+        }
+    </script>
+
+ </div>
+ 
+<br>
+		 <br>
+		 <br>
+		 <br>
+
+  <!-- Noticias recientes a la derecha -->
+        <div class="recent-news">
+            <h2>Más recientes</h2>
+            <div class="underline"></div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.3uyJ3FQwnSwM52R1U_ta8gHaEK?w=330&h=186&c=7&r=0&o=5&pid=1.7" alt="Artículo 1">
+                <div class="article-text">
+                    <a href="#" class="article-title">El caso de Javier Acosta (Lenguaje)</a>
+                    <div class="article-meta">Un heroe sin capa</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIF.6fUGfQ5VTptwADLPqm5kHw?w=258&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo1.html" class="article-title">El realismo mágico Y Gabo (inglés)        </a>
+                    <div class="article-meta">Un reflejo del alma colombiano</div>
+                </div>
+            </div>
+
+            <div class="article">
+                <img src="https://th.bing.com/th/id/OIP.2c6d6thWyxHci2LJLuXvOQHaFD?w=230&h=180&c=7&r=0&o=5&pid=1.7" alt="Artículo 2">
+                <div class="article-text">
+                    <a href="articulo3.html" class="article-title"> Verdad oculta del acuerdo de paz</a>
+                    <div class="article-meta">Colombia opina</div>
+                </div>
+            </div>
+
+             <div class="article">
+                <img src="https://cdn.colombia.com/sdi/2023/05/24/colombia-toma-medidas-frente-a-violencia-de-genero-1150277.jpg" alt="Artículo 3">
+                <div class="article-text">
+                    <a href="articulo2.html" class="article-title">La violencia de genero en Colombia</a>
+                    <div class="article-meta">Ni una menos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<br>
+		 <br>
+		 <br>
+		 <br>
+
+<footer>
+    <div class="footer-container">
+        
+        <hr>
+        <div class="footer-bottom">
+            <span>2024 - 2025 © SJB</span>
+            <div class="footer-links">
+                <a href="#">Últimas Novedades</a>
+                <a href="#">Populares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos de uso</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">¿Cómo citar?</a>
+                <a href="#">Anuncie</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>
